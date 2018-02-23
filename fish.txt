@@ -1,114 +1,132 @@
 roach
 catfish
 carp
-Barb
-Barbel
-Bass
-Basslet
-Billfish
+barb
+barbel
+bass
+basslet
+billfish
 bream
 pacu
-Blenny
+blenny
 tetra
-Bluefin
+bluefin
 tuna
-Bream
+bream
 stingray
-Cavalla
-Charales
-Chub
-Cisco
+cavalla
+charales
+chub
+cisco
 ray
-Cod
-Crampfish
-Dace
-Darter
-Dory
+cod
+crampfish
+dace
+darter
+dory
 cichlid
 snakeheads
 blenny
-Fera
-Fierasfer
-Flagtail pipefish
-Flathead
-Flounder
-Freshwater shark
-Grayback
-Green spotted puffer
-Grouper
-Gudgeon
-Hake
-Halibut
-Hamour
-Haplochromine
-Hawaiian flagtail
-Headstander
-Herring
-Highfin snapper
-Horned blenny
-Horse mackerel
-Killifish
-Kokopu
-Lampfish
-Lampuki netting
-Logperch
-Long-finned pike
-Lungfish
-Mackerel
-Mahseer
-Mbuna
-Menhaden
-Minnow
-Oyster blenny
-Pacu
-Perch
-Piper
-Plaice
-Platy
-Pollock
-Porgi grunt
-Raphael catfish
-Rasbora
-Red mullet
-Red seabream
-Red snapper
-Redfish
-Reef shark
-Rockfish
-Rudderfish
-Sábalo
-Sailfin catfish
-Salmon
-Sand eel
-Sardine
-Scrod
-Sea bass
-Seer fish
-Shiner
-Silver bream
-Silver dollar
-Silver fish
-Snakefish
-Sole
-Southern hake
-Sprat
-Stingfish
-Suckermouth
-Suckermouth catfish
-Tetra
-Tigerfish
-Tilapia
-Toadfish
-Toado
-Trout
-Upside-down catfish
-Utaka
-Whiff
-Whitefish
-Whiting
-Yellow catfish
-Yellowfin bream
-Yellowtail
+fera
+fierasfer
+flagtail pipefish
+flathead
+flounder
+freshwater shark
+grayback
+green spotted puffer
+grouper
+gudgeon
+hake
+halibut
+hamour
+haplochromine
+hawaiian flagtail
+headstander
+herring
+highfin snapper
+horned blenny
+horse mackerel
+killifish
+kokopu
+lampfish
+lampuki netting
+logperch
+lungfish
+mackerel
+mahseer
+mbuna
+menhaden
+minnow
+oyster blenny
+pacu
+perch
+piper
+plaice
+platy
+pollock
+porgi grunt
+raphael catfish
+rasbora
+red mullet
+red seabream
+red snapper
+redfish
+reef shark
+rockfish
+rudderfish
+sábalo
+sailfin catfish
+salmon
+sand eel
+sardine
+scrod
+sea bass
+seer fish
+shiner
+silver bream
+silver dollar
+silver fish
+snakefish
+sole
+southern hake
+sprat
+stingfish
+suckermouth
+suckermouth catfish
+tetra
+tigerfish
+tilapia
+toadfish
+toado
+trout
+upside-down catfish
+utaka
+whiff
+whitefish
+whiting
+yellow catfish
+yellowfin bream
+yellowtail
 turtle
 buoy
 kipper
+haddock
+prawn
+pike
+fin
+calamari
+anemone
+fish
+clam
+clams
+goldfish
+guppy
+gill
+starfish
+crab
+crabs
+mussel
+cockle
+whelk
+lobster

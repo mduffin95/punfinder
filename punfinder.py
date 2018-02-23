@@ -3,6 +3,7 @@ import nltk
 import string
 import pickle
 from collections import defaultdict
+from Levenshtein import distance
 
 def getSyllables(queryword, entries):
     for word, syl in entries: 
@@ -10,6 +11,7 @@ def getSyllables(queryword, entries):
             return syl
 if __name__ == "__main__":
         
+    entries = nltk.corpus.cmudict.entries()
     movie_syllables = dict()
     fish_syllables = dict()
     movie_words = defaultdict(list) 
@@ -41,7 +43,6 @@ if __name__ == "__main__":
         movie_syllables = pickle.load( open(movie_file, "rb"))
     except (OSError, IOError) as e:
         print("finding movie syllables")
-        entries = nltk.corpus.cmudict.entries()
         for m in movie_words:
             s = getSyllables(m, entries)
             if s is not None:
@@ -74,11 +75,9 @@ if __name__ == "__main__":
     for mw, ms in movie_syllables.items():
         for fw, fs in fish_syllables.items():
             min_len = min(len(ms), len(fs), level)
-            if ms[-min_len:] == fs[-min_len:] and mw != fw:
+            max_len = max(len(ms), len(fs), level)
+            if mw != fw and (ms[-min_len:] == fs[-min_len:] or ms[:min_len] == fs[:min_len] or distance(mw, fw) < int(max_len/3)):
                 print("\n" + str((mw, fw)))
                 for movie in movie_words[mw]:
                     pun = movie.lower().replace(mw, fw)
                     print(pun, end='')
-                
-            
-
