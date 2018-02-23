@@ -1,36 +1,32 @@
-Albanian roach
-Algae-eater
-Antarctic fishes
-Armoured catfish
-Asian carp
+roach
+catfish
+carp
 Barb
 Barbel
 Bass
 Basslet
 Billfish
-Black bream
-Black pacu
+bream
+pacu
 Blenny
-Blind tetra
-Bluefin tuna
+tetra
+Bluefin
+tuna
 Bream
-Brown stingray
-Bumblebee catfish
-Carp
+stingray
 Cavalla
-Cave catfish
 Charales
 Chub
 Cisco
-Coachwhip ray
+ray
 Cod
 Crampfish
 Dace
 Darter
 Dory
-Dwarf cichlid
-Dwarf snakeheads
-False Tasmanian blenny
+cichlid
+snakeheads
+blenny
 Fera
 Fierasfer
 Flagtail pipefish
@@ -55,8 +51,6 @@ Killifish
 Kokopu
 Lampfish
 Lampuki netting
-List of common commercial fish of Sri Lanka
-List of Danionin species by common name
 Logperch
 Long-finned pike
 Lungfish
@@ -115,3 +109,6 @@ Whiting
 Yellow catfish
 Yellowfin bream
 Yellowtail
+turtle
+buoy
+kipper
