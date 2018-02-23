@@ -120,3 +120,4 @@ whelk
 lobster
 net
 coral
+krill
