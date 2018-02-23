@@ -5,20 +5,50 @@ import pickle
 from collections import defaultdict
 from Levenshtein import distance
 
-def getSyllables(queryword, entries):
+def getPhonemes(queryword, entries):
     try:
         return entries[queryword]
     except KeyError:
         return None;
 
-def nsyl(word):
-  return [len(list(y for y in x if y[-1].isdigit())) for x in d[word.lower()]] 
+#a and b are lists of phonemes
+def rhyme(a, b, level):
+    asyl = nsyl(a)
+    bsyl = nsyl(b)
+    syl = min(level, asyl, bsyl)
+    length = min(len(a), len(b))
+    count = 0
+    for i in range(length):
+        if a[i] != b[i]:
+            break
+        if a[i][-1].isdigit():
+            count += 1
+        if count == syl and (i > 1 or i == (length-1)):
+            return True
+
+    count = 0
+    for i in range(-1, -(length+1), -1):
+        if a[i] != b[i]:
+            break
+        if a[i][-1].isdigit():
+            count += 1
+        if count == syl and (i < -2 or i == -length):
+            return True
+    return False
+
+
+def nsyl(phonemes):
+    count = 0
+    for x in phonemes:
+        if x[-1].isdigit():
+            count += 1
+    return count
 
 if __name__ == "__main__":
         
     entries = nltk.corpus.cmudict.dict()
-    movie_syllables = dict()
-    fish_syllables = dict()
+    movie_syllables = defaultdict(list)
+    fish_syllables = defaultdict(list)
     movie_words = defaultdict(list) 
     movie_file = "movie_syllables.pickle"
     movie_words_file = "movie_words.pickle"
@@ -49,11 +79,10 @@ if __name__ == "__main__":
     except (OSError, IOError) as e:
         print("finding movie syllables")
         for m in movie_words:
-            syllables = getSyllables(m, entries)
+            syllables = getPhonemes(m, entries)
             if syllables is not None:
                 print((m,syllables))
-                for s in syllables:
-                    movie_syllables[m] = s
+                movie_syllables[m] = syllables
 
         with open(movie_file, "wb") as f:
             pickle.dump(movie_syllables, f, pickle.HIGHEST_PROTOCOL)
@@ -69,22 +98,27 @@ if __name__ == "__main__":
 
         print("finding fish syllables")
         for f in fish_words:
-            syllables = getSyllables(f, entries)
+            syllables = getPhonemes(f, entries)
             if syllables is not None:
                 print((f,syllables))
-                for s in syllables: 
-                    fish_syllables[f] = s
+                fish_syllables[f] = syllables
        
         with open(fish_file, "wb") as f:
             pickle.dump(fish_syllables, f, pickle.HIGHEST_PROTOCOL)
 
-    level = 3
-    for mw, ms in movie_syllables.items():
-        for fw, fs in fish_syllables.items():
-            min_len = min(len(ms), len(fs), level)
-            max_len = max(len(ms), len(fs), level)
-            if mw != fw and (ms[-min_len:] == fs[-min_len:] or ms[:min_len] == fs[:min_len] or distance(mw, fw) < int(max_len/3)):
-                print("\n" + str((mw, fw)))
-                for movie in movie_words[mw]:
-                    pun = movie.lower().replace(mw, fw)
-                    print(pun, end='')
+    test = False 
+    if (test):
+        print(rhyme(entries['pie'][0], entries['pike'][0], 1))
+    else:
+        level = 1
+        for mw, ms_list in movie_syllables.items():
+            for fw, fs_list in fish_syllables.items():
+                for ms in ms_list:
+                    for fs in fs_list:
+                        min_len = min(len(ms), len(fs), level)
+                        max_len = max(len(ms), len(fs), level)
+                        if mw != fw and rhyme(ms, fs, level):
+                            print("\n" + str((mw, fw)))
+                            for movie in movie_words[mw]:
+                                pun = movie.lower().replace(mw, fw)
+                                print(pun, end='')

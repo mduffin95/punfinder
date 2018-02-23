@@ -6,7 +6,6 @@ barbel
 bass
 basslet
 billfish
-bream
 pacu
 blenny
 tetra
@@ -29,28 +28,27 @@ snakeheads
 blenny
 fera
 fierasfer
-flagtail pipefish
+pipefish
 flathead
 flounder
-freshwater shark
+shark
 grayback
-green spotted puffer
+puffer
 grouper
 gudgeon
 hake
 halibut
 hamour
 haplochromine
-hawaiian flagtail
+flagtail
 headstander
 herring
-highfin snapper
-horned blenny
-horse mackerel
+snapper
 killifish
 kokopu
 lampfish
-lampuki netting
+lampuki
+netting
 logperch
 lungfish
 mackerel
@@ -58,7 +56,7 @@ mahseer
 mbuna
 menhaden
 minnow
-oyster blenny
+oyster
 pacu
 perch
 piper
@@ -66,47 +64,37 @@ plaice
 platy
 pollock
 porgi grunt
-raphael catfish
 rasbora
-red mullet
-red seabream
-red snapper
+mullet
+seabream
 redfish
-reef shark
 rockfish
 rudderfish
 sábalo
-sailfin catfish
 salmon
-sand eel
+eel
 sardine
 scrod
 sea bass
 seer fish
 shiner
-silver bream
-silver dollar
-silver fish
 snakefish
 sole
 southern hake
 sprat
 stingfish
 suckermouth
-suckermouth catfish
 tetra
 tigerfish
 tilapia
 toadfish
 toado
 trout
-upside-down catfish
 utaka
 whiff
 whitefish
 whiting
-yellow catfish
-yellowfin bream
+yellowfin
 yellowtail
 turtle
 buoy
@@ -130,3 +118,5 @@ mussel
 cockle
 whelk
 lobster
+net
+coral
