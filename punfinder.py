@@ -74,11 +74,11 @@ if __name__ == "__main__":
     for mw, ms in movie_syllables.items():
         for fw, fs in fish_syllables.items():
             min_len = min(len(ms), len(fs), level)
-            if ms[-min_len:] == fs[-min_len:]:
-                print((mw, fw))
+            if ms[-min_len:] == fs[-min_len:] and mw != fw:
+                print("\n" + str((mw, fw)))
                 for movie in movie_words[mw]:
                     pun = movie.lower().replace(mw, fw)
-                    print(pun)
+                    print(pun, end='')
                 
             
 
