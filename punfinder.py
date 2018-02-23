@@ -2,35 +2,17 @@
 import nltk
 import string
 import pickle
-
-def rhyme(inp, level):
-     entries = nltk.corpus.cmudict.entries()
-     syllables = [(word, syl) for word, syl in entries if word == inp]
-     rhymes = []
-     for (word, syllable) in syllables:
-             rhymes += [word for word, pron in entries if pron[-level:] == syllable[-level:]]
-     return set(rhymes)
+from collections import defaultdict
 
 def getSyllables(queryword, entries):
     for word, syl in entries: 
         if word == queryword:
             return syl
-
-def doTheyRhyme(word1, word2):
-    # first, we don't want to report 'glue' and 'unglue' as rhyming words
-    # those kind of rhymes are LAME
-    if word1.find ( word2 ) == len(word1) - len ( word2 ):
-        return False
-    if word2.find ( word1 ) == len ( word2 ) - len ( word1 ): 
-        return False
-
-    return word1 in rhyme ( word2, 3 )
-
 if __name__ == "__main__":
         
     movie_syllables = dict()
     fish_syllables = dict()
-    movie_words = dict() 
+    movie_words = defaultdict(list) 
     movie_file = "movie_syllables.pickle"
     movie_words_file = "movie_words.pickle"
     fish_file = "fish_syllables.pickle"
@@ -39,28 +21,25 @@ if __name__ == "__main__":
     movies_source = "movies.txt"
 
     try:
-        movie_syllables = pickle.load( open(movie_file, "rb"))
         movie_words = pickle.load( open(movie_words_file, "rb"))
-        fish_syllables = pickle.load( open(fish_file, "rb"))
     except (OSError, IOError) as e:
-
-        fish_words = set() 
-
         with open(movies_source, "r") as f:
             for line in f:
-                x = line.split('\t', 1)[1]
-                for s in x.split():
+                movie = line.split('\t', 1)[1]
+                for s in movie.split():
                     s = s.translate(string.punctuation).lower()
                     s = s.replace(':', '')
                     if len(s) > 2:
-                        movie_words[s] = x
+                        movie_words[s].append(movie)
                         print(s)
 
-        with open(fish_source, "r") as f:
-            for line in f:
-                for x in line.split():
-                    fish_words.add(x)
+        with open(movie_words_file, "wb") as f:
+            pickle.dump(movie_words, f, pickle.HIGHEST_PROTOCOL)
 
+
+    try:
+        movie_syllables = pickle.load( open(movie_file, "rb"))
+    except (OSError, IOError) as e:
         print("finding movie syllables")
         entries = nltk.corpus.cmudict.entries()
         for m in movie_words:
@@ -69,32 +48,37 @@ if __name__ == "__main__":
                 print((m,s))
                 movie_syllables[m] = s
 
-        print("finding fish syllables")
+        with open(movie_file, "wb") as f:
+            pickle.dump(movie_syllables, f, pickle.HIGHEST_PROTOCOL)
+ 
+    try:
+        fish_syllables = pickle.load( open(fish_file, "rb"))
+    except (OSError, IOError) as e:
+        fish_words = set() 
+        with open(fish_source, "r") as f:
+            for line in f:
+                for x in line.split():
+                    fish_words.add(x)
 
+        print("finding fish syllables")
         for f in fish_words:
             s = getSyllables(f, entries)
             if s is not None:
                 print((f,s))
                 fish_syllables[f] = s
-
-        with open(movie_file, "wb") as f:
-            pickle.dump(movie_syllables, f, pickle.HIGHEST_PROTOCOL)
-        
-        with open(movie_words_file, "wb") as f:
-            pickle.dump(movie_words, f, pickle.HIGHEST_PROTOCOL)
-
-
+       
         with open(fish_file, "wb") as f:
             pickle.dump(fish_syllables, f, pickle.HIGHEST_PROTOCOL)
 
     level = 3
     for mw, ms in movie_syllables.items():
         for fw, fs in fish_syllables.items():
-            if ms[-level:] == fs[-level:]:
+            min_len = min(len(ms), len(fs), level)
+            if ms[-min_len:] == fs[-min_len:]:
                 print((mw, fw))
-                movie = movie_words[mw]
-                pun = movie.lower().replace(mw, fw)
-                print(pun)
+                for movie in movie_words[mw]:
+                    pun = movie.lower().replace(mw, fw)
+                    print(pun)
                 
             
 
