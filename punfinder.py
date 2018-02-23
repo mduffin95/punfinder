@@ -6,12 +6,17 @@ from collections import defaultdict
 from Levenshtein import distance
 
 def getSyllables(queryword, entries):
-    for word, syl in entries: 
-        if word == queryword:
-            return syl
+    try:
+        return entries[queryword]
+    except KeyError:
+        return None;
+
+def nsyl(word):
+  return [len(list(y for y in x if y[-1].isdigit())) for x in d[word.lower()]] 
+
 if __name__ == "__main__":
         
-    entries = nltk.corpus.cmudict.entries()
+    entries = nltk.corpus.cmudict.dict()
     movie_syllables = dict()
     fish_syllables = dict()
     movie_words = defaultdict(list) 
@@ -44,10 +49,11 @@ if __name__ == "__main__":
     except (OSError, IOError) as e:
         print("finding movie syllables")
         for m in movie_words:
-            s = getSyllables(m, entries)
-            if s is not None:
-                print((m,s))
-                movie_syllables[m] = s
+            syllables = getSyllables(m, entries)
+            if syllables is not None:
+                print((m,syllables))
+                for s in syllables:
+                    movie_syllables[m] = s
 
         with open(movie_file, "wb") as f:
             pickle.dump(movie_syllables, f, pickle.HIGHEST_PROTOCOL)
@@ -63,10 +69,11 @@ if __name__ == "__main__":
 
         print("finding fish syllables")
         for f in fish_words:
-            s = getSyllables(f, entries)
-            if s is not None:
-                print((f,s))
-                fish_syllables[f] = s
+            syllables = getSyllables(f, entries)
+            if syllables is not None:
+                print((f,syllables))
+                for s in syllables: 
+                    fish_syllables[f] = s
        
         with open(fish_file, "wb") as f:
             pickle.dump(fish_syllables, f, pickle.HIGHEST_PROTOCOL)
