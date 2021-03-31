@@ -37,7 +37,7 @@ Jinja2==2.9.6
 jmespath==0.9.3
 langtable==0.0.36
 lightdm-gtk-greeter-settings==1.2.0
-lxml==4.1.1
+lxml==4.6.3
 Mako==1.0.6.dev0
 MarkupSafe==0.23
 ntplib==0.3.3
